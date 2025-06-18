@@ -16,6 +16,8 @@ Welcome to **TheCoffeeHandSystem**! This repository provides a robust solution f
 
 TheCoffeeHandSystem is designed to help coffee shop owners and staff handle daily operations efficiently. It covers key functionalities such as order management, inventory tracking, and reporting.
 
+![Overview Image](./asset/image.png)
+
 ## Features
 
 - Order processing and management
@@ -46,46 +48,6 @@ WebBot is a conversational agent integrated into the system’s web interface. I
 - Enhances customer experience with fast, interactive support.
 - Minimizes order errors and improves operational efficiency.
 - Collects valuable data for analytics and service improvement.
-
-## Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/tdtai09423/TheCoffeeHandSystem.git
-   ```
-2. **Navigate to the project directory:**
-   ```bash
-   cd TheCoffeeHandSystem
-   ```
-3. **Install dependencies:**  
-   (Specify your package manager and dependencies here. For example, if using Node.js:)
-   ```bash
-   npm install
-   ```
-   _(or provide instructions for other languages/frameworks as needed)_
-
-## Usage
-
-1. **Start the application:**  
-   (Example for Node.js)
-   ```bash
-   npm start
-   ```
-2. **Access the system:**  
-   Open your browser and navigate to `http://localhost:3000` (or the appropriate URL/port).
-
-3. **Login:**  
-   Use your staff or admin credentials to access the dashboard and features.
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Create a pull request
 
 ## License
 
