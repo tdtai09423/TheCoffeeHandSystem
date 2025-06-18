@@ -1,0 +1,190 @@
+[{
+  "_id": "recipe_085d4d09-aa03-481d-a8f8-7bd5044ca124",
+  "drink_name": "Milk coffee",
+  "recipe": [
+    {
+      "ingredient": "Coffee beans",
+      "machine_name": "Coffee Machine",
+      "action": "grind",
+      "parameters_required": [
+        {
+          "name": "grind_size",
+          "value": 5
+        },
+        {
+          "name": "duration",
+          "value": 300
+        }
+      ]
+    },
+    {
+      "ingredient": "Coffee beans",
+      "machine_name": "Coffee Machine",
+      "action": "brew",
+      "parameters_required": [
+        {
+          "name": "temperature",
+          "value": 40
+        },
+        {
+          "name": "pressure",
+          "value": 10
+        },
+        {
+          "name": "volumn",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "ingredient": "Milk",
+      "machine_name": "Milk Machine",
+      "action": "heat",
+      "parameters_required": [
+        {
+          "name": "temperature",
+          "value": 60
+        },
+        {
+          "name": "duration",
+          "value": 180
+        }
+      ]
+    },
+    {
+      "ingredient": "Milk",
+      "machine_name": "Milk Machine",
+      "action": "pump",
+      "parameters_required": [
+        {
+          "name": "volume",
+          "value": 10
+        },
+        {
+          "name": "flow_rate",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "ingredient": "Water",
+      "machine_name": "Water Machine",
+      "action": "pump",
+      "parameters_required": [
+        {
+          "name": "volume",
+          "value": 5
+        },
+        {
+          "name": "flow_rate",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "ingredient": "Ice",
+      "machine_name": "Ice Making Machine",
+      "action": "adding",
+      "parameters_required": [
+        {
+          "name": "volume",
+          "value": 5
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": "recipe_8e74e4c5-3c86-4c6c-90d9-2852a798c0b4",
+  "drink_name": "Espresso",
+  "recipe": [
+    {
+      "ingredient": "Coffee beans",
+      "machine_name": "Coffee Machine",
+      "action": "grind",
+      "parameters_required": [
+        {
+          "name": "grind_size",
+          "value": 1
+        },
+        {
+          "name": "duration",
+          "value": 300
+        }
+      ]
+    },
+    {
+      "ingredient": "Coffee beans",
+      "machine_name": "Coffee Machine",
+      "action": "brew",
+      "parameters_required": [
+        {
+          "name": "temperature",
+          "value": 70
+        },
+        {
+          "name": "pressure",
+          "value": 10
+        },
+        {
+          "name": "volumn",
+          "value": 20
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": "recipe_76654097-ce50-4161-9649-a2482344bd4f",
+  "drink_name": "Orange Juice",
+  "recipe": [
+    {
+      "ingredient": "Orange juice",
+      "machine_name": "Orange Juicer",
+      "action": "squeeze",
+      "parameters_required": [
+        {
+          "name": "pressure",
+          "value": 50
+        },
+        {
+          "name": "quantity",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "ingredient": "Orange juice",
+      "machine_name": "Orange Juicer",
+      "action": "pump",
+      "parameters_required": [
+        {
+          "name": "flow_rate",
+          "value": 70
+        }
+      ]
+    },
+    {
+      "ingredient": "Sugar",
+      "machine_name": "Sugar Machine",
+      "action": "adding",
+      "parameters_required": [
+        {
+          "name": "quantity",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "ingredient": "Ice",
+      "machine_name": "Ice Making Machine",
+      "action": "adding",
+      "parameters_required": [
+        {
+          "name": "volume",
+          "value": 5
+        }
+      ]
+    }
+  ]
+}]

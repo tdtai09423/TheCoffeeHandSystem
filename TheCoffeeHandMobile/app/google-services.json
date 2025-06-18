@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "488473011568",
+    "project_id": "coffee-order-475c8",
+    "storage_bucket": "coffee-order-475c8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488473011568:android:5a2c5697a38fd9e9d6dbb5",
+        "android_client_info": {
+          "package_name": "com.example.coffeeappui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4VZq1JwbkoCzFFlQNOg_hgtViJGGT_yw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

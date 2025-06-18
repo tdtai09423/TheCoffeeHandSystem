@@ -1,0 +1,25 @@
+#VRML_SIM R2025a utf8
+
+PROTO Lid [
+  field SFVec3f translation 0 0 0
+  field SFRotation rotation 0 0 1 0
+  field SFVec3f scale 1 1 1
+]
+{
+  Transform {
+    translation IS translation
+    rotation IS rotation
+    children [
+      Shape {
+        appearance PBRAppearance {
+          baseColor 0.7 0.7 0.7
+          roughness 1
+        }
+        geometry Mesh {
+          url "objects/lid.stl"
+          scale IS scale
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,340 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/factory/conveyors/protos/ConveyorBelt.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/CorrugatedMetal.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/ThreadMetalPlate.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Roughcast.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/solids/protos/SolidBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/GalvanizedMetal.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/drinks/protos/Can.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/universal_robots/protos/UR10e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/devices/robotiq/protos/Robotiq3fGripper.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Wall.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/universal_robots/protos/UR3e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/franka_emika/panda/protos/Panda.proto"
+
+WorldInfo {
+  info [
+    "This simulation enables to move around a Summit-XL Steel moving in an industrial environment using the keyboard"
+  ]
+  title "Simulation of Robotnik Automation's Summit-XL Steel robot"
+  contactProperties [
+    ContactProperties {
+      material1 "InteriorWheelMat"
+      coulombFriction [
+        0, 2, 0
+      ]
+      frictionRotation -0.785398 0
+      bounce 0
+      forceDependentSlip [
+        10, 0
+      ]
+      softCFM 0.0001
+    }
+    ContactProperties {
+      material1 "ExteriorWheelMat"
+      coulombFriction [
+        0, 2, 0
+      ]
+      frictionRotation 0.785398 0
+      bounce 0
+      forceDependentSlip [
+        10, 0
+      ]
+      softCFM 0.0001
+    }
+    ContactProperties {
+      material1 "slope"
+      coulombFriction [
+        0.5
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.439224523925276 0.3518947387961208 -0.8265905336926044 1.9178438783549974
+  position 0.8865955231496684 1.9740976346063004 4.78129143446278
+  exposure 1.7
+}
+TexturedBackground {
+  texture "factory"
+}
+RectangleArena {
+  translation 0 2.22 0
+  floorSize 7 9.9
+  floorAppearance ThreadMetalPlate {
+  }
+  wallThickness 0.3
+  wallHeight 2.5
+  wallAppearance Roughcast {
+    textureTransform TextureTransform {
+      scale 2 1
+    }
+  }
+}
+DEF MachineMaster Panda {
+  translation -3.05 -0.12 0.9
+  name "Machine Master"
+  controller "process_message_MQ"
+}
+DEF IceMakingMachine Panda {
+  translation 0.8 -1.76 0.66
+  rotation 0 0 1 1.5708
+  name "Ice Making Machine"
+  controller "IceMakingMachineController"
+}
+DEF WaterMachine Panda {
+  translation 1.31 -1.76 0.66
+  rotation 0 0 1 1.5708
+  name "Water Machine"
+  controller "WaterMachineController"
+}
+DEF MilkMachine Panda {
+  translation 0.31 -1.74 0.66
+  rotation 0 0 1 1.5708
+  name "Milk Machine"
+  controller "MilkMachineController"
+}
+DEF SugarMachine Panda {
+  translation 0.92 1.68 0.66
+  rotation 0 0 1 -1.5707953071795862
+  name "Sugar Machine"
+  controller "SugarMachineController"
+}
+DEF EggWhisker Panda {
+  translation 0.29 1.68 0.66
+  rotation 0 0 1 -1.5707953071795862
+  name "Egg Whisker"
+  controller "EggWhiskerMachineController"
+}
+DEF CoffeeMachine Panda {
+  translation -0.19 -1.74 0.66
+  rotation 0 0 1 1.5708
+  name "Coffee Machine"
+  controller "CoffeeMachineController"
+}
+Wall {
+  translation -2.88 -0.45 0
+  name "wall(2)"
+  size 1.3 1 0.9
+}
+Wall {
+  translation 0.68 -1.07 0
+  name "wall(4)"
+  size 3 1.3 0.65
+}
+Wall {
+  translation 0.46 1.07 0
+  name "wall(1)"
+  size 2 0.9 0.65
+}
+Wall {
+  translation 0.68 -2.07 -0.01
+  name "wall(3)"
+  size 3 0.7 0.67
+}
+Wall {
+  translation 0.46 1.81 -0.01
+  name "wall(5)"
+  size 2 0.7 0.67
+}
+UR3e {
+  translation -1.63 -0.06 0.9
+  rotation 0 0 1 -1.5707953071795862
+  toolSlot [
+    Robotiq3fGripper {
+    }
+    DistanceSensor {
+      translation -3.6732e-07 0.1 0
+      rotation 0 0 1 1.5708
+    }
+  ]
+}
+Pose {
+  translation 1.77 6.5 1.05
+  rotation 1 0 0 1.5707963267948966
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.23 0.3 0.01
+      }
+    }
+  ]
+}
+SolidBox {
+  translation 0.285 0.0777 0.46
+  rotation 1 0 0 1.5707963267948966
+  name "box(5)"
+  size 1.4 0.91 0.7
+  appearance GalvanizedMetal {
+  }
+}
+SolidBox {
+  translation -1.645 -0.0623 0.45
+  rotation 1 0 0 1.5707963267948966
+  name "box(6)"
+  size 0.2 0.91 0.2
+  appearance GalvanizedMetal {
+  }
+}
+UR10e {
+  translation 0.59 -0.14 0.91
+  rotation -0.5399058995138032 0.5399058995138032 -0.6457578798128463 -5.307179586466759e-06
+  name "Left_Arm(1)"
+  controller "LeftArmController"
+  selfCollision FALSE
+  toolSlot [
+    Robotiq3fGripper {
+    }
+    DistanceSensor {
+      translation 0 0.1 0
+      rotation 0 0 1 1.570796
+    }
+  ]
+}
+SolidBox {
+  translation 1.77 0.33 0.375
+  name "box(2)"
+  size 0.2 0.18 1.05
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation -0.29 -0.52 0.375
+  rotation 0 0 1 1.5708
+  name "box(1)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation -0.23 -1.19 0.325
+  rotation 0 0 1 1.5708
+  name "box(7)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation 0.32 -1.19 0.325
+  rotation 0 0 1 1.5708
+  name "box(8)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation 0.81 -1.2 0.325
+  rotation 0 0 1 1.5708
+  name "box(11)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation 1.31 -1.21 0.325
+  rotation 0 0 1 1.5708
+  name "box(12)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation 0.28 1.14 0.375
+  rotation 0 0 1 1.5708
+  name "box(9)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation 0.92 1.14 0.375
+  rotation 0 0 1 1.5708
+  name "box(10)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation -1.81 -0.52 0.375
+  rotation 0 0 1 1.5708
+  name "box(4)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+SolidBox {
+  translation 1.77 2.43 0.375
+  name "box(3)"
+  size 0.2 0.18 0.75
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 0.7 0.7
+    }
+  }
+}
+ConveyorBelt {
+  translation -1.19 -0.52 0.75
+  rotation 0 0 1 3.14159
+  name "conveyor belt(3)"
+  size 1.9 0.15 0.15
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 6 3.1
+    }
+  }
+  borderHeight 0
+  speed 0.2
+}
+ConveyorBelt {
+  translation 1.77 3.45 0.75
+  rotation 0 0 1 -1.5707953071795862
+  name "conveyor belt(1)"
+  size 2.7 0.15 0.15
+  appearance CorrugatedMetal {
+    textureTransform TextureTransform {
+      scale 6 3.1
+    }
+  }
+  borderHeight 0
+  speed 0.2
+}
+Can {
+  translation 1.7700500075895864 0.31509683324690935 0.960926102625404
+  rotation -0.001606616277815844 0.0016165335096863921 0.9999974027984012 1.5729927878712961
+  name "can(14)"
+}

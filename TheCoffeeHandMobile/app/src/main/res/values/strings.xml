@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">coffeeappui</string>
+    <string name="choice_your_nfavorite_coffee">Choice your\nFavorite Coffee</string>
+    <string name="the_best_coffee_in_town">the best coffee in town</string>
+    <string name="get_started">Get Started</string>
+    <string name="search_anything">Search anything...</string>
+    <string name="category">category</string>
+    <string name="Category">Category</string>
+    <string name="popular_coffees">Popular Coffees</string>
+    <string name="see_all">See all</string>
+    <string name="back">Back</string>
+</resources>
