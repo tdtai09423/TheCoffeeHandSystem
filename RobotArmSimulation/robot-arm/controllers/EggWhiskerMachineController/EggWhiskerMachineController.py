@@ -5,8 +5,11 @@ import json
 import time
 import requests  # Thêm import requests để gửi HTTP request
 import random  # Thêm import random để tạo số ngẫu nhiên
+from dotenv import load_dotenv  # <--- Thêm dòng này
 
-THINGSBOARD_TOKEN = "Q0tdCcKouFxfuKTa5ZRY"  # Token của ThingsBoard
+load_dotenv()
+
+THINGSBOARD_TOKEN = os.getenv("THINGSBOARD_TOKEN")  # <--- Lấy từ env
 THINGSBOARD_URL = f"http://thingsboard.cloud/api/v1/{THINGSBOARD_TOKEN}/telemetry"
 
 TIME_STEP = 32
