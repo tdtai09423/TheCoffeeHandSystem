@@ -204,5 +204,32 @@ namespace Services.Services
             await _cacheService.RemoveAsync($"drink_{id}");
             await _cacheService.RemoveByPrefixAsync("drinks_");
         }
+
+        public async Task<List<DrinkResponseDTO>> GetDrinksByCategoryAsync(string categoryName) {
+            if (string.IsNullOrWhiteSpace(categoryName)) {
+                throw new ArgumentException("Category name must not be empty.", nameof(categoryName));
+            }
+
+            string cacheKey = $"drinks_category_{categoryName.ToLower()}";
+
+            // Try to get from cache
+            var cachedDrinks = await _cacheService.GetAsync<List<DrinkResponseDTO>>(cacheKey);
+            if (cachedDrinks != null) {
+                return cachedDrinks;
+            }
+
+            var drinks = await _unitOfWork.GetRepository<Drink>()
+                .Entities
+                .Include(d => d.Category)
+                .Where(d => d.DeletedTime == null && d.Category != null && d.Category.Name.ToLower() == categoryName.ToLower())
+                .OrderBy(d => d.Name)
+                .ProjectTo<DrinkResponseDTO>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+
+            await _cacheService.SetAsync(cacheKey, drinks, TimeSpan.FromMinutes(30));
+
+            return drinks;
+        }
+
     }
 }

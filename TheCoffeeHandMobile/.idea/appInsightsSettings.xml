@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.coffeeappui" />
-                  <option name="mobileSdkAppId" value="1:488473011568:android:5a2c5697a38fd9e9d6dbb5" />
-                  <option name="projectId" value="coffee-order-475c8" />
-                  <option name="projectNumber" value="488473011568" />
+                  <option name="mobileSdkAppId" value="1:250007183082:android:1f3f2a73c8ca6b248f8193" />
+                  <option name="projectId" value="the-coffe-hand" />
+                  <option name="projectNumber" value="250007183082" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

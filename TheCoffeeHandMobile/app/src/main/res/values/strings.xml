@@ -9,4 +9,6 @@
     <string name="popular_coffees">Popular Coffees</string>
     <string name="see_all">See all</string>
     <string name="back">Back</string>
+    <string name="log_in">Log In</string>
+    <string name="your_notification">Your notification</string>
 </resources>

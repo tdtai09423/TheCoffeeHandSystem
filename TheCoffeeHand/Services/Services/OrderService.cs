@@ -26,16 +26,16 @@ namespace Services.Services
         private readonly IRedisCacheServices _cacheService;
         private readonly IUserServices _userServices;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IRabbitMQService _rabbitMQService;
+        //private readonly IRabbitMQService _rabbitMQService;
 
-        public OrderService(IUnitOfWork unitOfWork, IMapper mapper, IRedisCacheServices cacheService, IUserServices userServices, IHttpContextAccessor httpContextAccessor, IRabbitMQService rabbitMQService)
+        public OrderService(IUnitOfWork unitOfWork, IMapper mapper, IRedisCacheServices cacheService, IUserServices userServices, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _cacheService = cacheService;
             _userServices = userServices;
             _httpContextAccessor = httpContextAccessor;
-            _rabbitMQService = rabbitMQService;
+            //_rabbitMQService = rabbitMQService;
         }
 
 
@@ -170,7 +170,7 @@ namespace Services.Services
 
                     string jsonMessage = JsonConvert.SerializeObject(orderMessage);
 
-                    await _rabbitMQService.SendMessageAsync("order_queue", jsonMessage);
+                    //await _rabbitMQService.SendMessageAsync("order_queue", jsonMessage);
                 }
                 catch
                 {
@@ -348,7 +348,8 @@ namespace Services.Services
         public async Task<OrderResponseDTO> GetCartAsync()
         {
 
-            var userId = _httpContextAccessor.HttpContext?.User.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
+            //var userId = _httpContextAccessor.HttpContext?.User.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
+            var userId = "9FA32D1F-A5E0-4563-3D8C-08DDC45850F1";
 
             if (userId == null)
                 throw new BadRequestException("not_found", "User not found");
@@ -356,6 +357,7 @@ namespace Services.Services
             var cart = await _unitOfWork.GetRepository<Order>()
                 .Entities
                 .Include(o => o.OrderDetails)
+                    .ThenInclude(od => od.Drink)
                 .FirstOrDefaultAsync(o => o.UserId.ToString() == userId && o.Status == 0);
             if (cart == null) 
             {
@@ -405,14 +407,14 @@ namespace Services.Services
                 OrderId = Guid.Parse("11111111-2222-3333-4444-555555555555"),
                 UserId = Guid.Parse("085d4d09-aa03-481d-a8f8-7bd5044ca124"),
                 Drinks = new[] {
-                    new { DrinkId = Guid.Parse("085d4d09-aa03-481d-a8f8-7bd5044ca124"), DrinkName = "Milk Coffee", Quantity = 1 },
+                    new { DrinkId = Guid.Parse("2787599D-50E0-4DB3-ACFD-94BB34BFCAD3"), DrinkName = "Milk Coffee", Quantity = 1 },
                 }
             };
 
             // Serialize sang JSON (nếu SendMessageAsync yêu cầu kiểu string)
             string jsonMessage = JsonConvert.SerializeObject(fakeOrderMessage, Formatting.Indented);
 
-            await _rabbitMQService.SendMessageAsync("test_queue", jsonMessage);
+            //await _rabbitMQService.SendMessageAsync("test_queue", jsonMessage);
         }
 
         public async Task CompleteOrderAsync(Guid orderId) {

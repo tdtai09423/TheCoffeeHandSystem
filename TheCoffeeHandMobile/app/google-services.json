@@ -1,26 +1,44 @@
 {
   "project_info": {
-    "project_number": "488473011568",
-    "project_id": "coffee-order-475c8",
-    "storage_bucket": "coffee-order-475c8.firebasestorage.app"
+    "project_number": "250007183082",
+    "project_id": "the-coffe-hand",
+    "storage_bucket": "the-coffe-hand.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:488473011568:android:5a2c5697a38fd9e9d6dbb5",
+        "mobilesdk_app_id": "1:250007183082:android:1f3f2a73c8ca6b248f8193",
         "android_client_info": {
           "package_name": "com.example.coffeeappui"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "250007183082-mscee7qevad27dnqpoavgf3jj01c5pqo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coffeeappui",
+            "certificate_hash": "508b382a84fd3b531dac0730ceb98d771a9db1c8"
+          }
+        },
+        {
+          "client_id": "250007183082-17l2sefvqe1vih5e1no9psm7osb7c098.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyA4VZq1JwbkoCzFFlQNOg_hgtViJGGT_yw"
+          "current_key": "AIzaSyBgFn_UwZ5IBTlCAyRN-ZcihV6PXihcXZw"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250007183082-17l2sefvqe1vih5e1no9psm7osb7c098.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

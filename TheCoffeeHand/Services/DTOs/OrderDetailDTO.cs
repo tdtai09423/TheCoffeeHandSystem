@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Services.DTOs
 {
@@ -9,6 +10,7 @@ namespace Services.DTOs
         public string Note { get; set; } = string.Empty;
         public Guid? OrderId { get; set; }
         public Guid? DrinkId { get; set; }
+        public DrinkDTO Drink { get; set; }
     }
     public class OrderDetailRequestDTO
     {

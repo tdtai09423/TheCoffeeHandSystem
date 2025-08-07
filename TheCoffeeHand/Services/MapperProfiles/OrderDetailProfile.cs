@@ -9,6 +9,7 @@ namespace Services.MapperProfiles
         public OrderDetailProfile()
         {
             CreateMap<OrderDetail, OrderDetailResponselDTO>().ReverseMap();
+            CreateMap<Drink, DrinkDTO>();
             CreateMap<OrderDetailRequestDTO, OrderDetail>().ReverseMap();
         }
     }

@@ -56,8 +56,8 @@ namespace Services {
 
             services.AddSingleton(factory);
 
-            services.AddSingleton<IRabbitMQService, RabbitMQService>();
-            services.AddHostedService<RabbitMQConsumerService>();
+            //services.AddSingleton<IRabbitMQService, RabbitMQService>();
+            //services.AddHostedService<RabbitMQConsumerService>();
             services.AddScoped<IMachineInfoService, MachineInfoService>();
 
         }

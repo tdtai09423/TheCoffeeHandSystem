@@ -23,38 +23,93 @@ namespace Services.Services
             _cacheService = cacheService;
         }
 
-        public async Task<OrderDetailResponselDTO> CreateOrderDetailAsync(OrderDetailRequestDTO dto)
-        {
-            var orderDetail = _mapper.Map<OrderDetail>(dto);
+        //public async Task<OrderDetailResponselDTO> CreateOrderDetailAsync(OrderDetailRequestDTO dto)
+        //{
+        //    var orderDetail = _mapper.Map<OrderDetail>(dto);
 
+        //    var cart = await _unitOfWork.GetRepository<Order>()
+        //        .Entities
+        //        .Include(o => o.OrderDetails!)
+        //            .ThenInclude(od => od.Drink)
+        //        .FirstOrDefaultAsync(c => c.Id == orderDetail.OrderId && c.Status == 0);
+
+        //    if (cart == null)
+        //        throw new BaseException.NotFoundException("not_found" ,"Cart not found");
+
+        //    // Validate ingredient stock
+        //    await ValidateIngredientStockAsync(orderDetail.DrinkId ?? throw new Exception("DrinkId cannot be null"), orderDetail.Total);
+
+
+        //    using (var transaction = await _unitOfWork.BeginTransactionAsync())
+        //    {
+        //        try
+        //        {
+        //            await _unitOfWork.GetRepository<OrderDetail>().InsertAsync(orderDetail);
+        //            await _unitOfWork.SaveAsync();
+
+        //            cart.TotalPrice += orderDetail.Total * (orderDetail.Drink?.Price ?? 0);
+        //            _unitOfWork.GetRepository<Order>().Update(cart);
+        //            await _unitOfWork.SaveAsync();
+
+        //            await transaction.CommitAsync();
+        //        }
+        //        catch
+        //        {
+        //            await transaction.RollbackAsync();
+        //            throw;
+        //        }
+        //    }
+
+        //    await _cacheService.RemoveByPrefixAsync("order_details_");
+        //    await _cacheService.RemoveByPrefixAsync("orders_");
+
+        //    return _mapper.Map<OrderDetailResponselDTO>(orderDetail);
+        //}
+        public async Task<OrderDetailResponselDTO> CreateOrderDetailAsync(OrderDetailRequestDTO dto) {
+            // Tìm cart kèm OrderDetails
             var cart = await _unitOfWork.GetRepository<Order>()
                 .Entities
                 .Include(o => o.OrderDetails!)
                     .ThenInclude(od => od.Drink)
-                .FirstOrDefaultAsync(c => c.Id == orderDetail.OrderId && c.Status == 0);
+                .FirstOrDefaultAsync(c => c.Id == dto.OrderId && c.Status == 0);
 
             if (cart == null)
-                throw new BaseException.NotFoundException("not_found" ,"Cart not found");
+                throw new BaseException.NotFoundException("not_found", "Cart not found");
 
-            // Validate ingredient stock
-            await ValidateIngredientStockAsync(orderDetail.DrinkId ?? throw new Exception("DrinkId cannot be null"), orderDetail.Total);
+            // Kiểm tra xem drink đã tồn tại chưa
+            var existingOrderDetail = cart.OrderDetails.FirstOrDefault(od => od.DrinkId == dto.DrinkId);
 
+            using (var transaction = await _unitOfWork.BeginTransactionAsync()) {
+                try {
+                    if (existingOrderDetail != null) {
+                        // Validate stock cho phần tăng thêm
+                        await ValidateIngredientStockAsync(dto.DrinkId, dto.Total);
 
-            using (var transaction = await _unitOfWork.BeginTransactionAsync())
-            {
-                try
-                {
-                    await _unitOfWork.GetRepository<OrderDetail>().InsertAsync(orderDetail);
-                    await _unitOfWork.SaveAsync();
+                        // Tăng total
+                        existingOrderDetail.Total += dto.Total;
 
-                    cart.TotalPrice += orderDetail.Total * (orderDetail.Drink?.Price ?? 0);
+                        _unitOfWork.GetRepository<OrderDetail>().Update(existingOrderDetail);
+                        await _unitOfWork.SaveAsync();
+                    } else {
+                        // Validate stock toàn bộ số lượng
+                        await ValidateIngredientStockAsync(dto.DrinkId, dto.Total);
+
+                        var newOrderDetail = _mapper.Map<OrderDetail>(dto);
+
+                        await _unitOfWork.GetRepository<OrderDetail>().InsertAsync(newOrderDetail);
+                        await _unitOfWork.SaveAsync();
+                    }
+
+                    // Cập nhật lại tổng tiền
+                    cart.TotalPrice = cart.OrderDetails
+                        .Where(od => od.Drink != null)
+                        .Sum(od => od.Drink.Price * od.Total);
+
                     _unitOfWork.GetRepository<Order>().Update(cart);
                     await _unitOfWork.SaveAsync();
 
                     await transaction.CommitAsync();
-                }
-                catch
-                {
+                } catch {
                     await transaction.RollbackAsync();
                     throw;
                 }
@@ -63,8 +118,15 @@ namespace Services.Services
             await _cacheService.RemoveByPrefixAsync("order_details_");
             await _cacheService.RemoveByPrefixAsync("orders_");
 
-            return _mapper.Map<OrderDetailResponselDTO>(orderDetail);
+            // Trả về bản ghi mới hoặc cũ
+            var orderDetailToReturn = existingOrderDetail ?? await _unitOfWork.GetRepository<OrderDetail>()
+                .Entities
+                .Include(od => od.Drink)
+                .FirstOrDefaultAsync(od => od.OrderId == dto.OrderId && od.DrinkId == dto.DrinkId);
+
+            return _mapper.Map<OrderDetailResponselDTO>(orderDetailToReturn);
         }
+
 
         private async Task ValidateIngredientStockAsync(Guid drinkId, int quantity)
         {

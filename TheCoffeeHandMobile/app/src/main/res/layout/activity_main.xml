@@ -16,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="80dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -25,23 +26,23 @@
                 android:layout_marginTop="48dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editTextText"
+                <TextView
+                    android:id="@+id/notiMain"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/white_bg"
-                    android:drawableStart="@drawable/search_icon"
+                    android:gravity="center_vertical"
                     android:drawablePadding="8dp"
                     android:ems="10"
-                    android:hint="@string/search_anything"
+                    android:hint="@string/your_notification"
                     android:inputType="text"
                     android:padding="8dp"
                     android:textColor="@color/darkBrown"
                     android:textColorHint="@color/darkBrown" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/logOutBtn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
@@ -59,7 +60,7 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/banner"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="170dp"
                     android:scaleType="fitXY"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +96,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:minHeight="50dp">
 
                 <ProgressBar
                     android:id="@+id/progressBarCategory"
@@ -104,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:indeterminateTint="@color/orange"
                     android:indeterminateTintMode="src_in"
-                    app:layout_constraintBottom_toBottomOf="@+id/recyclerViewCat"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +116,9 @@
                     android:id="@+id/recyclerViewCat"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
                     android:clipToPadding="false"
+                    android:minHeight="50dp"
                     android:paddingEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +151,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:minHeight="150dp">
 
                 <ProgressBar
                     android:id="@+id/progressBarPopular"
@@ -156,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:indeterminateTint="@color/orange"
                     android:indeterminateTintMode="src_in"
-                    app:layout_constraintBottom_toBottomOf="@+id/recyclerViewPopular"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
@@ -167,6 +172,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
+                    android:minHeight="150dp"
                     android:paddingEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -193,6 +199,7 @@
                 android:layout_gravity="center_vertical">
 
                 <LinearLayout
+                    android:id="@+id/mapBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -208,13 +215,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="Explore"
+                        android:text="Location"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/cartBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"

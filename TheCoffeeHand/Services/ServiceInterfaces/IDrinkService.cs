@@ -12,6 +12,7 @@ namespace Services.ServiceInterfaces
         Task<PaginatedList<DrinkResponseDTO>> GetDrinksAsync(int pageNumber, int pageSize);
         Task<DrinkResponseDTO> UpdateDrinkAsync(Guid id, DrinkRequestDTO drinkDTO);
         Task DeleteDrinkAsync(Guid id);
+        Task<List<DrinkResponseDTO>> GetDrinksByCategoryAsync(string categoryName);
 
     }
 }

@@ -34,7 +34,7 @@ def rabbitmq_listener(coffee_machine):
 
     # Kết nối tới RabbitMQ
     connection = pika.BlockingConnection(pika.URLParameters(
-        "amqps://jrlfzsrv:p64MW92lLWnfU4XtfHaCjYbR7FNj3STv@turkey.rmq.cloudamqp.com/jrlfzsrv"
+        "amqps://jbkouopo:C4l6etM1edUdQ3tKsUAVeMn5CtkFfBSD@toucan.lmq.cloudamqp.com/jbkouopo"
     ))
     channel = connection.channel()
     
